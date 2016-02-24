@@ -1,7 +1,14 @@
 package predictor.util;
 
 import predictor.core.model.Residue;
+import predictor.core.model.Molecule;
 
+/***
+ * 
+ * @author Anson
+ *
+ *	Utility class
+ */
 public final class PredictorUtility {
 	
 	/**
@@ -16,6 +23,22 @@ public final class PredictorUtility {
 				return i;
 			}
 		}
+		return -1;
+	}
+	
+	/**
+	 * Find chain in molecule by its name & return position of first chain found
+	 * @param m molecule
+	 * @param c name of chain
+	 * @return position of chain in molecule
+	 */
+	public static int findChain(Molecule m, String c) {
+		for(int i=0; i<m.getChains().size(); i++){
+			if(c.equals(m.getChains().get(i).getName())){
+				return i;
+			}
+		}
+		
 		return -1;
 	}
 }

@@ -124,7 +124,7 @@ public abstract class RamaMap {
 	 * @param Psi
 	 * @return probability of Helix/Sheet formation
 	 */
-	public static double calHelixProb(double Phi, double Psi, String ss){
+	public static double calHelixProb(double Phi, double Psi){
 		if(Phi==360 || Psi==360){
 			return 0;
 		}
@@ -142,12 +142,6 @@ public abstract class RamaMap {
 			psiPlot = 17;
 		}
 
-		if(ss.equals("HELIX")){
-			return defaultHelixMap[(int)phiPlot][(int)psiPlot];
-		} else if(ss.equals("SHEET")) {
-			return defaultSheetMap[(int)phiPlot][(int)psiPlot];
-		} else {
-			return 0;
-		}
+		return defaultHelixMap[(int)phiPlot][(int)psiPlot];
 	}
 }

@@ -21,11 +21,60 @@ public class Residue extends predictor.core.model.AbstractParticle {
 	protected ArrayList<Vector3D> representativePoints;
 	protected double Phi;
 	protected double Psi;
+	protected int[] HBondDnr = new int[6];
+	protected int[] HBondAcc = new int[6];
+	protected int NBondDnr=0, NBondAcc=0;
+	protected boolean interchainHBonds = false;;
+	protected String asn="C";
 	
 	public Residue() {
 		super();
 		name = null;
 		atoms = new ArrayList<Atom>();
+	}
+	
+	public String getAsn(){
+		return this.asn;
+	}
+	
+	public void setInterChainHBonds(boolean b){
+		this.interchainHBonds = b;
+	}
+	
+	public boolean getInterChainHBonds(){
+		return this.interchainHBonds;
+	}
+	
+	public void setHBondDnr(int val, int pos){
+		this.HBondDnr[pos] = val;
+	}
+	
+	public int[] getHBondDnr(){
+		return this.HBondDnr;
+	}
+	
+	public void setHBondAcc(int val, int pos){
+		this.HBondAcc[pos] = val;
+	}
+	
+	public int[] getHBondAcc(){
+		return this.HBondAcc;
+	}
+	
+	public void setNBondDnr(int i){
+		this.NBondDnr = i;
+	}
+	
+	public int getNBondDnr(){
+		return this.NBondDnr;
+	}
+	
+	public void setNBondAcc(int i){
+		this.NBondAcc = i;
+	}
+	
+	public int getNBondAcc(){
+		return this.NBondAcc;
 	}
 	
 	public double getPhi() {
