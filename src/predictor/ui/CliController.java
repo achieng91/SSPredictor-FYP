@@ -6,7 +6,8 @@ public class CliController extends Controller {
 		super(file);
 	}
 
-	public void displayOutput(String fileType) {
-		Predictor.genOutputFile(fileType);
+	public void displayOutput() {
+		System.out.println("Generate Output..");
+		Predictor.output();
 	}
 }

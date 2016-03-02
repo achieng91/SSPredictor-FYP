@@ -1,9 +1,11 @@
 package predictor.core;
 
 import predictor.util.FileWriter;
-import predictor.util.SSFile;
 
 import predictor.core.model.Model;
+import predictor.core.model.Molecule;
+import predictor.core.model.Chain;
+import predictor.core.model.Residue;
 import predictor.core.model.secStructures.*;
 
 /***
@@ -15,9 +17,49 @@ import predictor.core.model.secStructures.*;
 public class OutputController {
 	
 	protected Model model;
+	protected Molecule mol;
+	protected String name;
 	
 	public OutputController (Model model) {
 		this.model = model;
+		this.mol = model.getMolecules().get(0);
+		this.name = mol.getName();
+	}
+	
+	public void output() {
+		System.out.println("REM  --------------------------------------------------------------------  " + name);
+		System.out.println("REM                                                                        " + name);
+		System.out.println("REM  STRIDE: Knowledge-based secondary structure assignment                " + name);
+		System.out.println("REM  Please cite: D.Frishman & P.Argos, Proteins XX, XXX-XXX, 1995         " + name);
+		System.out.println("REM                                                                        " + name);
+		System.out.println("REM  Residue accessible surface area calculation                           " + name);
+		System.out.println("REM  Please cite: F.Eisenhaber & P.Argos, J.Comp.Chem. 14, 1272-1280, 1993 " + name);
+		System.out.println("REM               F.Eisenhaber et al., J.Comp.Chem., 1994, submitted       " + name);
+		System.out.println("REM                                                                        " + name);
+		
+		System.out.println("REM  ------------------------ General information -----------------------  " + name);
+		System.out.println("REM                                                                        " + name);
+		
+		System.out.println("REM  -------------------- Secondary structure summary -------------------  " + name);
+		System.out.println("REM                                                                        " + name);		
+		
+		System.out.println("REM  --------------- Detailed secondary structure assignment-------------  " + name);
+		System.out.println("REM                                                                        " + name);
+		System.out.println("REM  |---Residue---|    |--Structure--|   |-Phi-|   |-Psi-|                " + name);
+		for(int i=0; i<mol.getChains().size(); i++){
+			Chain c = mol.getChains().get(i);
+			for(int j=0; j<c.getResidues().size(); j++){
+				Residue r = c.getResidues().get(j);
+
+				System.out.println("ASG  " + 
+						r.getName() + " " + c.getName() + String.format("%5s", r.getResidueSeqNum()) + String.format("%5s",r.getResidueSeqNum()) +
+						"    " + r.getAsn() + String.format("%14s", r.getSSName()) +
+						"   " + String.format("%7.2f", r.getPhi()) +
+						"   " + String.format("%7.2f", r.getPsi()) +
+						"                " +
+						name);
+			}
+		}
 	}
 	
 	/**
@@ -29,12 +71,4 @@ public class OutputController {
 		return new SSModel();
 	}
 	
-	/**
-	 * Generate output file
-	 * @param fileType Type of file to generate
-	 * @return Generated file based on chosen file type
-	 */
-	public SSFile createSSFile(String fileType) {
-		return FileWriter.createFile(fileType);
-	}
 }

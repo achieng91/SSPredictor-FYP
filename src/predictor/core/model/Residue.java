@@ -26,15 +26,31 @@ public class Residue extends predictor.core.model.AbstractParticle {
 	protected int NBondDnr=0, NBondAcc=0;
 	protected boolean interchainHBonds = false;;
 	protected String asn="C";
+	protected String SSName = "Coil";
 	
 	public Residue() {
 		super();
 		name = null;
 		atoms = new ArrayList<Atom>();
 	}
+	public int getMoleculeSeqNum(){
+		return this.moleculeSeqNum;
+	}
+	
+	public String getSSName(){
+		return this.SSName;
+	}
+	
+	public void setSSName(String SSName){
+		this.SSName = SSName;
+	}
 	
 	public String getAsn(){
 		return this.asn;
+	}
+	
+	public void setAsn(String asn){
+		this.asn = asn;
 	}
 	
 	public void setInterChainHBonds(boolean b){

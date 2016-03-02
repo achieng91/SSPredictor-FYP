@@ -2,8 +2,7 @@ package predictor.util;
 
 public abstract class FileWriter {
 
-	public static SSFile createFile(String fileType) {
-		return null;
+	public static void outputAsFile(String fileName) {
 		
 	}
 	

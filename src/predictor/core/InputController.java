@@ -33,6 +33,7 @@ public class InputController {
 	public void createModel() {
 		this.model.setMolecule(struc.getChains());
 		this.mol = model.getMolecules().get(0);
+//		System.out.println(struc.getChains().get(0).getChainID());
 	}
 
 	/**
@@ -79,6 +80,7 @@ public class InputController {
 							coordH[k] = coordN[k] + this.distN_H* (coordH[k]-coordN[k]) / lengthN_H;
 						}
 						newH.setCoordinates(coordH);
+						newH.setVectorCoord();
 						newH.setBond(new Bond(newH, atomN));
 						atomN.setBond(new Bond(atomN, newH));
 						r.getAtomList().add(atomNPos+1, newH);

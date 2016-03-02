@@ -1,9 +1,8 @@
 package predictor.core;
 
-import predictor.core.model.Model;
+import predictor.core.model.*;
 
 import predictor.core.OutputController;
-import predictor.util.SSFile;
 
 /***
  * 
@@ -31,22 +30,42 @@ public class PredictorController {
 		inputController.addHAtoms();
 		inputController.addPhiPsiAngles();
 		
-		this.model = inputController.getModel();
+		model = inputController.getModel();
+		
 	}
 	
 	/**
 	 * Run STRIDE predictor
 	 */
 	public void runSTRIDE() {
-		STRIDEController stride = new STRIDEController(this.model);
-		stride.predict();
+		new STRIDEController(model).predict();
+//		Molecule mol = model.getMolecules().get(0);
+//		String name =  mol.getName();
+//		for(int i=0; i<mol.getChains().size(); i++){
+//			Chain c = mol.getChains().get(i);
+//			for(int j=0; j<c.getResidues().size(); j++){
+//				Residue r = c.getResidues().get(j);
+//				System.out.println("REM  |---Residue---|    |--Structure--|   |-Phi-|   |-Psi-|  |-Area-|      " + name);
+//				System.out.println("ASG  " + 
+//						r.getName() + " " + c.getName() + "  " + r.getResidueSeqNum() + "  " + r.getResidueSeqNum() +
+//						"    " + r.getAsn() + String.format("%14s", r.getSSName()) + "      " + r.getPhi() +
+//						name);
+//			}
+//		}
 	}
 	
 	/**
 	 * Generate output file
 	 */
-	public SSFile genOutputFile(String fileType) {
-		return new OutputController(this.model).createSSFile(fileType);
+	public void genOutputFile(String fileName) {
+		
+	}
+	
+	/**
+	 * Output to standard output
+	 */
+	public void output(){
+		new OutputController(model).output();
 	}
 	
 	/** 

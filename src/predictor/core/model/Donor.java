@@ -16,11 +16,25 @@ public class Donor {
 	protected Atom dAtomH;
 	protected double HBondRadius = 1.90;
 	
+	public Donor(Chain chain, int res, Atom dAtomCA) {
+		this.chain = chain;
+		this.res = res;
+		this.dAtomCA = dAtomCA;
+	}
+	
 	public Donor(Chain chain, int res, Atom dAtomCA, Atom dAtomH){
 		this.chain = chain;
 		this.res = res;
 		this.dAtomCA = dAtomCA;
 		this.dAtomH = dAtomH;
+	}
+	
+	public Donor(Chain chain, int res, Atom dAtomN, Atom dAtomC, Atom dAtomCA){
+		this.chain = chain;
+		this.res = res;
+		this.dAtomN = dAtomN;
+		this.dAtomC = dAtomC;
+		this.dAtomCA = dAtomCA;
 	}
 	
 	public Donor(Chain chain, int res, Atom dAtomN, Atom dAtomC, Atom dAtomCA, Atom dAtomH){

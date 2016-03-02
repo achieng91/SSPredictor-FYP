@@ -1,8 +1,12 @@
 package predictor.core.model.secStructures;
 
+import predictor.core.model.Residue;
+
 public class HelixAlpha extends SecStructure {
 	
-	protected String name = "ALPHAHELIX";
-	protected String asn = "H";
-
+	public HelixAlpha(Residue r) {
+		super(r);
+		this.SSName = "ALPHAHELIX";
+		this.asn = "H";
+	}
 }

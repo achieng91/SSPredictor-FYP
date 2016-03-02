@@ -47,7 +47,7 @@ public abstract class Geometry {
 	}
 	
 	/**
-	 * Calculate angle between 3 vectors
+	 * Calculate angle between 3 atoms
 	 * @param vA
 	 * @param vB
 	 * @param vC

@@ -1,7 +1,13 @@
 package predictor.core.model.secStructures;
 
+import predictor.core.model.Residue;
+
 public class Sheet extends SecStructure {
 
-	protected String name = "SHEET";
-	
+	public Sheet(Residue r) {
+		super(r);
+		// TODO Auto-generated constructor stub
+		this.SSName = "SHEET";
+		this.asn = "E";
+	}
 }
