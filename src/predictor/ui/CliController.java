@@ -9,5 +9,7 @@ public class CliController extends Controller {
 	public void displayOutput() {
 		System.out.println("Generate Output..");
 		Predictor.output();
+		Predictor.genOutputFile("4hhb", "");
+		System.out.println("End");
 	}
 }

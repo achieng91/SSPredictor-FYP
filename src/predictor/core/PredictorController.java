@@ -57,8 +57,8 @@ public class PredictorController {
 	/**
 	 * Generate output file
 	 */
-	public void genOutputFile(String fileName) {
-		
+	public void genOutputFile(String fileName, String filePath) {
+		new OutputController(model).outputFile(fileName, filePath);
 	}
 	
 	/**
