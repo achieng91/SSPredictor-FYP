@@ -9,7 +9,7 @@ package predictor.core.model;
 public class Donor {
 	
 	protected Chain chain;
-	protected int res;
+	protected int res=-1;
 	protected Atom dAtomN;
 	protected Atom dAtomC;
 	protected Atom dAtomCA;

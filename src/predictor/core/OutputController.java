@@ -50,6 +50,72 @@ public class OutputController {
 		
 		System.out.println("REM  -------------------- Secondary structure summary -------------------  " + name);
 		System.out.println("REM                                                                        " + name);		
+		for(int i=0; i<mol.getChains().size(); i++){
+			int cnt = 1, start = 1;
+			Chain c = mol.getChains().get(i);
+			System.out.println("CHN  Chain " + c.getName() + "                                                               " + name);
+			System.out.println("REM                                                                        " + name);
+			
+			do{
+				// Print markers
+				String begin="", content="", end="";
+				for(; cnt%50!=0 && cnt<c.getResidues().size(); cnt++){
+					if(cnt==start){
+						begin = "REM       ";
+					} else if((cnt-1)%10==0){
+						content += ".";
+					} else {
+						content += " ";
+					}
+				}
+				if((cnt)%50==0){
+					content += " .";
+				}
+				end = "               " + name;
+				System.out.println(begin + String.format("%-50s", content) + end);
+				
+				// Print residue name
+				int j = start;
+				int tmp = start;
+				begin=""; content=""; end="";
+				for(; j<=cnt; j++){
+					Residue r = c.getResidues().get(j-1);
+					if(j==start){
+						begin = "SEQ  " + String.format("%-5s", start);
+					}
+					content += processRName(r.getName());
+					
+					if(j==cnt){
+						end = "   " + String.format("%-12s", cnt) + name;
+					}
+				}
+				System.out.println(begin + String.format("%-50s", content) + end);
+				start = j;
+				
+				// Print residue asn
+				begin=""; content=""; end="";
+				for(int k=tmp; k<=cnt; k++){
+					Residue r = c.getResidues().get(k-1);
+					if(k==tmp){
+						begin = "STR       ";
+					} 
+					if(r.getAsn().equals("C")){
+						content += " ";
+					} else {
+						content += r.getAsn();
+					}
+					if(k==cnt){
+						end = "               " + name;
+					}
+				}
+				System.out.println(begin + String.format("%-50s", content) + end);
+				System.out.println("REM                                                                        " + name);
+				cnt++;
+			} while(cnt<=c.getResidues().size());
+		}
+		System.out.println("REM                                                                        " + name);
+		System.out.println("REM                                                                        " + name);
+		
 		
 		System.out.println("REM  --------------- Detailed secondary structure assignment-------------  " + name);
 		System.out.println("REM                                                                        " + name);
@@ -67,6 +133,34 @@ public class OutputController {
 						"                " +
 						name);
 			}
+		}
+	}
+	
+	protected char processRName(String name){
+		switch(name) {
+		case "ALA": return 'A';	
+		case "ARG": return 'R';
+		case "ASN": return 'N';
+		case "ASP": return 'D';
+		case "ASX": return 'B';
+		case "CYS": return 'C';
+		case "GLN": return 'Q';
+		case "GLU": return 'E';
+		case "GLX": return 'Z';
+		case "GLY": return 'G';
+		case "HIS": return 'H';
+		case "ILE": return 'I';
+		case "LEU": return 'L';
+		case "LYS": return 'K';
+		case "MET": return 'M';
+		case "PRO": return 'P';
+		case "PHE": return 'F';
+		case "SER": return 'S';
+		case "THR": return 'T';
+		case "TRP": return 'W';
+		case "TYR": return 'Y';
+		case "VAL": return 'V';
+		default: return 'X';
 		}
 	}
 	
