@@ -1,16 +1,17 @@
 package predictor.core.model.secStructures;
 
-import predictor.core.model.Residue;
+import predictor.core.model.AsnResidue;
 
 public class Turn extends SecStructure {
 	
 	protected String turnType;
 	
-	public Turn(Residue r) {
-		super(r);
+	public Turn(AsnResidue res) {
+		super(res);
 		// TODO Auto-generated constructor stub
-		this.SSName = "TURN";
-		this.asn = "T";
+		
+		this.setAsn("T");
+		this.setType("TURN");
 	}
 	
 	public void setTurnType(String turnType){

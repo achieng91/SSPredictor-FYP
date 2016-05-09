@@ -5,6 +5,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import predictor.core.model.secStructures.SSModel;
 import predictor.ui.*;
 
 /***
@@ -17,8 +18,11 @@ import predictor.ui.*;
 public class App {
 	
 	private static boolean enableUI = false;
+	private static boolean outputFile = true;
+	private static boolean outputObject = true;
 	private static String predictor = "STRIDE";
 	private static final Logger log = Logger.getLogger("main");
+	private static SSModel model;
 
 	public static void main(String[] args) {
 	    FileHandler fh;  
@@ -45,11 +49,18 @@ public class App {
 				controller.predictSTRIDE();
 			}
    		
+   		if(outputObject){
+   			model = controller.generateOutputObject();
+   		}
+   		
    		if(enableUI){
    			//TODO: Add display for GUI
    		} else {
-   			controller.displayOutput();
+   			controller.displayOutput(model);
    		}
-
+   		
+   		if(outputFile){
+   			controller.generateOutputFile("4hhb", "");
+   		}
    	}
 }

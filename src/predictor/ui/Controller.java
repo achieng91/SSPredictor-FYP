@@ -1,6 +1,7 @@
 package predictor.ui;
 
 import predictor.core.PredictorController;
+import predictor.core.model.secStructures.SSModel;
 
 public abstract class Controller {
 	
@@ -13,10 +14,18 @@ public abstract class Controller {
 		Predictor.STRIDESetup();
 	}
 	
-	public void displayOutput() {
-//		System.out.println("Generate Output..");
+	public void displayOutput(SSModel model) {
+		System.out.println("Generating Output..");
 	}
 	
+	public void generateOutputFile(String fileName, String filePath){
+		System.out.println("Generating Output File..");
+		Predictor.genOutputFile(fileName, filePath);
+	}
+	
+	public SSModel generateOutputObject(){
+		return Predictor.genOutput();
+	}
 	
 	public void predictSTRIDE() {
 		Predictor.runSTRIDE();

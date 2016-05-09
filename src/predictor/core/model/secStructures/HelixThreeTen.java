@@ -1,13 +1,14 @@
 package predictor.core.model.secStructures;
 
-import predictor.core.model.Residue;
+import predictor.core.model.AsnResidue;
 
 public class HelixThreeTen extends SecStructure {
 	
-	public HelixThreeTen(Residue r) {
-		super(r);
+	public HelixThreeTen(AsnResidue res) {
+		super(res);
 		// TODO Auto-generated constructor stub
-		this.SSName = "310HELIX";
-		this.asn = "G";
+		
+		this.setAsn("G");
+		this.setType("310HELIX");
 	}
 }

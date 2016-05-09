@@ -11,6 +11,64 @@ REM  ------------------------ General information -----------------------  4HHB
 REM                                                                        4HHB
 REM  -------------------- Secondary structure summary -------------------  4HHB
 REM                                                                        4HHB
+CHN  Chain A                                                               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  1    VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSH   50          4HHB
+STR       TTTHHHHHHHHHHHHTTTTHHHHHHHHHHHHHHHHTTTTTTTTTTT  TT               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  51   GSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKL   100         4HHB
+STR       TTHHHHHHHHHHHHHHHHHHHTTTTHHHHHHHHHHHHHHH     HHHHH               4HHB
+REM                                                                        4HHB
+REM                .         .         .                                   4HHB
+SEQ  101  LSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR            141         4HHB
+STR       HHHHHHHHHHHHTTTTT HHHHHHHHHHHHHHHHHHHTTT                         4HHB
+REM                                                                        4HHB
+CHN  Chain B                                                               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  1    VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLST   50          4HHB
+STR       TTT HHHHHHHHHHHH   HHHHHHHHHHHHHHHTTTTTTTTTTTT                   4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  51   PDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDP   100         4HHB
+STR       HHHHH  HHHHHHHHHHHHHHHHHHTTTTTHHHHHHHHHHHHHHH    H               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .                         4HHB
+SEQ  101  ENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH       146         4HHB
+STR       HHHHHHHHHHHHHHHHHHTTTTTHHHHHHHHHHHHHHHHHHHH                      4HHB
+REM                                                                        4HHB
+CHN  Chain C                                                               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  1    VLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSH   50          4HHB
+STR       TTTHHHHHHHHHHHHHHTTHHHHHHHHHHHHHHHHTTTTTTTTTTT  TT               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  51   GSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKL   100         4HHB
+STR       TTHHHHHHHHHHHHHHHHHHHTTTTHHHHHHHHHHHHHHH     HHHHH               4HHB
+REM                                                                        4HHB
+REM                .         .         .                                   4HHB
+SEQ  101  LSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR            141         4HHB
+STR       HHHHHHHHHHHHTTTTT HHHHHHHHHHHHHHHHHHHH                           4HHB
+REM                                                                        4HHB
+CHN  Chain D                                                               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  1    VHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLST   50          4HHB
+STR       TTT HHHHHHHHHHHH   HHHHHHHHHHHHHHHTTTTTTTTTTTT                   4HHB
+REM                                                                        4HHB
+REM                .         .         .         .         .               4HHB
+SEQ  51   PDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDP   100         4HHB
+STR       HHHHHH HHHHHHHHHHHHHHHHHHHTTTTHHHHHHHHHHHHHHHH   H               4HHB
+REM                                                                        4HHB
+REM                .         .         .         .                         4HHB
+SEQ  101  ENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH       146         4HHB
+STR       HHHHHHHHHHHHHHHHHHTTTTTHHHHHHHHHHHHHHHHHHHH                      4HHB
+REM                                                                        4HHB
+REM                                                                        4HHB
+REM                                                                        4HHB
 REM  --------------- Detailed secondary structure assignment-------------  4HHB
 REM                                                                        4HHB
 REM  |---Residue---|    |--Structure--|   |-Phi-|   |-Psi-|                4HHB

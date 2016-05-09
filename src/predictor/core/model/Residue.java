@@ -27,6 +27,7 @@ public class Residue extends predictor.core.model.AbstractParticle {
 	protected boolean interchainHBonds = false;;
 	protected String asn="C";
 	protected String SSName = "Coil";
+	protected String turnType;
 	
 	public Residue() {
 		super();
@@ -35,6 +36,13 @@ public class Residue extends predictor.core.model.AbstractParticle {
 	}
 	public int getMoleculeSeqNum(){
 		return this.moleculeSeqNum;
+	}
+	
+	public void setTurnType(String turnType){
+		this.turnType = turnType;
+	}
+	public String getTurnType(){
+		return this.turnType;
 	}
 	
 	public String getSSName(){

@@ -1,2 +1,2 @@
-Mar 02, 2016 1:11:17 PM predictor.core.App main
+May 10, 2016 4:32:18 AM predictor.core.App main
 INFO: Application starts

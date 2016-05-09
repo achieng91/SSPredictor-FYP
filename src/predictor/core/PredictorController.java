@@ -1,6 +1,9 @@
 package predictor.core;
 
 import predictor.core.model.*;
+import predictor.core.model.secStructures.SSModel;
+
+import org.biojava.bio.structure.Structure;
 
 import predictor.core.OutputController;
 
@@ -13,7 +16,9 @@ import predictor.core.OutputController;
 public class PredictorController {
 
 	protected String filePath;
-	protected Model model;
+	protected Model model = new Model();
+	protected Molecule mol;
+	protected Structure struc;
 	
 	public PredictorController(String filePath) {
 		this.filePath = filePath;
@@ -24,11 +29,13 @@ public class PredictorController {
 	 * Must be run first before using other functions
 	 */
 	public void STRIDESetup() {
-		InputController inputController = new InputController();
+		InputController inputController = new InputController(model);
 		inputController.getInput(filePath);
-		inputController.createModel();
-		inputController.addHAtoms();
-		inputController.addPhiPsiAngles();
+		struc = inputController.getStruc();
+		
+		mol = model.getMolecules().get(0);
+		SetupController.addHAtoms(mol);
+		SetupController.addPhiPsiAngles(mol);
 		
 		model = inputController.getModel();
 		
@@ -38,20 +45,7 @@ public class PredictorController {
 	 * Run STRIDE predictor
 	 */
 	public void runSTRIDE() {
-		new STRIDEController(model).predict();
-//		Molecule mol = model.getMolecules().get(0);
-//		String name =  mol.getName();
-//		for(int i=0; i<mol.getChains().size(); i++){
-//			Chain c = mol.getChains().get(i);
-//			for(int j=0; j<c.getResidues().size(); j++){
-//				Residue r = c.getResidues().get(j);
-//				System.out.println("REM  |---Residue---|    |--Structure--|   |-Phi-|   |-Psi-|  |-Area-|      " + name);
-//				System.out.println("ASG  " + 
-//						r.getName() + " " + c.getName() + "  " + r.getResidueSeqNum() + "  " + r.getResidueSeqNum() +
-//						"    " + r.getAsn() + String.format("%14s", r.getSSName()) + "      " + r.getPhi() +
-//						name);
-//			}
-//		}
+		new Predictor(model).predict();
 	}
 	
 	/**
@@ -63,15 +57,16 @@ public class PredictorController {
 	
 	/**
 	 * Output to standard output
+	 * @param model2 
 	 */
-	public void output(){
-		new OutputController(model).output();
+	public void output(SSModel model2){
+		new OutputController(model).output(struc, model2);
 	}
 	
 	/** 
 	 * Generate output object
 	 */
-	public void genOutput() {
-		
+	public SSModel genOutput() {
+		return new OutputController(model).createSSObject();
 	}
 }

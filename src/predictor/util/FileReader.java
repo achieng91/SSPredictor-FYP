@@ -21,7 +21,6 @@ public abstract class FileReader {
 		// wrapper class for parsing a PDB file.
 		PDBFileReader pdbreader = new PDBFileReader();
 		Structure struc = null; 
-		//Model model = null;
 
 		try{
 			// Access to the data of a PDB file.

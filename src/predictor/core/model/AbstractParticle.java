@@ -2,7 +2,6 @@ package predictor.core.model;
 
 import predictor.core.model.BoundingPrimitive;
 import predictor.core.model.math.Matrix3;
-import predictor.core.model.math.Matrix4;
 import predictor.core.model.math.Vector3D;
 
 public abstract class AbstractParticle implements predictor.core.model.Particle {
@@ -18,7 +17,6 @@ public abstract class AbstractParticle implements predictor.core.model.Particle 
 	protected Matrix3 inverseInertiaTensor;
 //	protected Quaternion orientation;
 	protected Vector3D rotation;
-	protected Matrix4 transformMatrix;
 	protected BoundingPrimitive boundingPrimitive;
 	protected int netCharge;
 

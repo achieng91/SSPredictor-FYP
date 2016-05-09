@@ -1,16 +1,11 @@
 package predictor.core;
 
 import predictor.util.FileWriter;
-
+import predictor.util.PredictorUtility;
 import predictor.core.model.Model;
 import predictor.core.model.Molecule;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Writer;
+import org.biojava.bio.structure.Structure;
 
 import predictor.core.model.Chain;
 import predictor.core.model.Residue;
@@ -34,7 +29,7 @@ public class OutputController {
 		this.name = mol.getName();
 	}
 	
-	public void output() {
+	public void output(Structure struc, SSModel ssmodel) {
 		System.out.println("REM  --------------------------------------------------------------------  " + name);
 		System.out.println("REM                                                                        " + name);
 		System.out.println("REM  STRIDE: Knowledge-based secondary structure assignment                " + name);
@@ -46,6 +41,21 @@ public class OutputController {
 		System.out.println("REM                                                                        " + name);
 		
 		System.out.println("REM  ------------------------ General information -----------------------  " + name);
+		System.out.println("REM                                                                        " + name);
+		System.out.println("HDR  " + String.format("%-40s", struc.getHeader().get("classification")) + 
+				String.format("%-12s", struc.getHeader().get("depDate")) + String.format("%-18s", name) + name);
+		
+		for(int i=0; i<struc.getCompounds().size(); i++){
+			System.out.println("CMP  MOL_ID: " + String.format("%-62s", (i+1)+";") + name);
+			System.out.println("CMP   MOLECULE: " + String.format("%-59s", struc.getCompounds().get(i).getMolName()) + name);
+			System.out.println("CMP   CHAIN: " + String.format("%-62s", struc.getCompounds().get(i).getChainId()+";") + name);
+			System.out.println("CMP   ENGINEERED: " + String.format("%-57s", struc.getCompounds().get(i).getEngineered()+";") + name);
+		}
+		
+		for(int i=0; i<struc.getCompounds().size(); i++){
+			System.out.println("SRC  MOL_ID: " + String.format("%-62s", (i+1)+";") + name);
+			System.out.println("SRC   ORGANISM_SCIENTIFIC: " + String.format("%-48s", struc.getCompounds().get(i).getOrganismScientific()+";") + name);
+		}
 		System.out.println("REM                                                                        " + name);
 		
 		System.out.println("REM  -------------------- Secondary structure summary -------------------  " + name);
@@ -83,7 +93,7 @@ public class OutputController {
 					if(j==start){
 						begin = "SEQ  " + String.format("%-5s", start);
 					}
-					content += processRName(r.getName());
+					content += PredictorUtility.processRName(r.getName());
 					
 					if(j==cnt){
 						end = "   " + String.format("%-12s", cnt) + name;
@@ -114,6 +124,11 @@ public class OutputController {
 			} while(cnt<=c.getResidues().size());
 		}
 		System.out.println("REM                                                                        " + name);
+//		
+//		for(int i=0;i<ssmodel.getSSMol().getSS().size(); i++){
+//			SecStructure s = ssmodel.getSSMol().getSS().get(i);
+//			System.out.println("LOC  " + s.getAsn()+s.getStartResName() +ssmodel.getSSMol().getSS().size()+ name);
+//		}
 		System.out.println("REM                                                                        " + name);
 		
 		
@@ -136,76 +151,13 @@ public class OutputController {
 		}
 	}
 	
-	protected char processRName(String name){
-		switch(name) {
-		case "ALA": return 'A';	
-		case "ARG": return 'R';
-		case "ASN": return 'N';
-		case "ASP": return 'D';
-		case "ASX": return 'B';
-		case "CYS": return 'C';
-		case "GLN": return 'Q';
-		case "GLU": return 'E';
-		case "GLX": return 'Z';
-		case "GLY": return 'G';
-		case "HIS": return 'H';
-		case "ILE": return 'I';
-		case "LEU": return 'L';
-		case "LYS": return 'K';
-		case "MET": return 'M';
-		case "PRO": return 'P';
-		case "PHE": return 'F';
-		case "SER": return 'S';
-		case "THR": return 'T';
-		case "TRP": return 'W';
-		case "TYR": return 'Y';
-		case "VAL": return 'V';
-		default: return 'X';
-		}
-	}
-	
+	/**
+	 * Output result as txt file
+	 * @param fileName
+	 * @param filePath
+	 */
 	public void outputFile(String fileName, String filePath){
-		//TODO: Shift to FileWriter
-		try {
-			PrintWriter writer = new PrintWriter(filePath + fileName + ".txt", "UTF-8");
-			
-			writer.println("REM  --------------------------------------------------------------------  " + name);
-			writer.println("REM                                                                        " + name);
-			writer.println("REM  STRIDE: Knowledge-based secondary structure assignment                " + name);
-			writer.println("REM  Please cite: D.Frishman & P.Argos, Proteins XX, XXX-XXX, 1995         " + name);
-			writer.println("REM                                                                        " + name);
-			writer.println("REM  Residue accessible surface area calculation                           " + name);
-			writer.println("REM  Please cite: F.Eisenhaber & P.Argos, J.Comp.Chem. 14, 1272-1280, 1993 " + name);
-			writer.println("REM               F.Eisenhaber et al., J.Comp.Chem., 1994, submitted       " + name);
-			writer.println("REM                                                                        " + name);
-			
-			writer.println("REM  ------------------------ General information -----------------------  " + name);
-			writer.println("REM                                                                        " + name);
-			
-			writer.println("REM  -------------------- Secondary structure summary -------------------  " + name);
-			writer.println("REM                                                                        " + name);		
-			
-			writer.println("REM  --------------- Detailed secondary structure assignment-------------  " + name);
-			writer.println("REM                                                                        " + name);
-			writer.println("REM  |---Residue---|    |--Structure--|   |-Phi-|   |-Psi-|                " + name);
-			for(int i=0; i<mol.getChains().size(); i++){
-				Chain c = mol.getChains().get(i);
-				for(int j=0; j<c.getResidues().size(); j++){
-					Residue r = c.getResidues().get(j);
-
-					writer.println("ASG  " + 
-							r.getName() + " " + c.getName() + String.format("%5s", r.getResidueSeqNum()) + String.format("%5s",r.getResidueSeqNum()) +
-							"    " + r.getAsn() + String.format("%14s", r.getSSName()) +
-							"   " + String.format("%7.2f", r.getPhi()) +
-							"   " + String.format("%7.2f", r.getPsi()) +
-							"                " +
-							name);
-				}
-			}
-			writer.close();
-		} catch (IOException ex) {
-			  ex.printStackTrace();
-		} 
+		FileWriter.outputAsFile(mol, filePath, fileName, name);
 	}
 	
 	/**
@@ -213,8 +165,10 @@ public class OutputController {
 	 * @return Secondary structure model
 	 */
 	public SSModel createSSObject() {
-		//TODO: create SS Object
-		return new SSModel();
+		SSModel ssModel = new SSModel();
+		ssModel.create(mol);
+		
+		return ssModel;
 	}
 	
 }
